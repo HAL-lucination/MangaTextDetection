@@ -19,32 +19,14 @@ I haven't bothered to form this into a python library. It's just a series of scr
 
 Text Location Example
 ---------------------
-Here's an example run of a page from Weekly Young Magazine #31 2013. The input image is as follows (jpg).
-![Input image](https://github.com/johnoneil/MangaTextDetection/blob/master/test/194.jpg?raw=true)
+Here's an example. The input and output images are as follows (jpg).
+![Input image](https://github.com/johnoneil/MangaTextDetection/blob/master/test/locate.jpg?raw=true)
 
 An initial estimate of text locations can be found by the 'LocateText.py' script:
 
 ```
- ../LocateText.py '週刊ヤングマガジン31号194.jpg' -o 194_text_locations.png
+ ../LocateText.py input.png -o output.png
 ```
-
-With the results as follows (estimated text marked with red boxes):
-
-![locate text output](https://github.com/johnoneil/MangaTextDetection/blob/master/test/194_text_locations_thumb.png?raw=true)
-
-Note that in the output above you see several of the implementation deficiencies. For example, there are several small false positives scattered around, and some major false positives on the girl's sleeve and eyes in panels 2 and 3.
-Also note that many large areas of text were not detected (false negatives). Despite how pleased I was with the results (and I was more pleased than you could possibly believe) significant improvements are needed.
-
-Text Segmentation Example
--------------------------
-To more easily separate text from background you can also segment the image, with text areas and non text being separated into different (RGB) color channels. This easily allows you to remove estimated text from image entirely or vice-versa.
-Use the command:
-```
-./segmentation.py '週刊ヤングマガジン31号194.jpg' -o 194_segmentation.png
-```
-The results follow:
-
-![Input image](https://github.com/johnoneil/MangaTextDetection/blob/master/test/194_segmentation_thumb.png?raw=true)
 
 
 Dependencies
