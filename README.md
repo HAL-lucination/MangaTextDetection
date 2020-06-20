@@ -1,12 +1,13 @@
 MangaTextDetection
 ==================
 
-Experiments in text localization and detection in raw manga scans. Mostly using OpenCV python API.
+Forked from an ancient repo. Updated with new Tesseract models and Python interface. Compatibility updated to Python 3.7.
+Experiments in text localization and detection in raw manga scans. Mostly using OpenCV, PIL and python API.
 
 
 Overview
 --------
-This repository holds some experiments I did in summer 2013 during a sudden interest in text detection in images. It uses some standard techniques (run length smoothing, connected component analysis) and some experimental stuff. Overall, I was able to get in the neighborhood of where I wanted to be, but the results are very processing intensive and not terribly reliable.
+This repository holds some experiments ~I did in summer 2013 during a sudden interest~ I did in summer 2020 in text detection in images. It uses some standard image processing techniques (run length smoothing, connected component analysis) and some experimental stuff. Overall, the result is okay. Will add more codes to search for masks in the near future.
 
 State
 -----
@@ -45,64 +46,15 @@ The results follow:
 
 ![Input image](https://github.com/johnoneil/MangaTextDetection/blob/master/test/194_segmentation_thumb.png?raw=true)
 
-OCR and Html Generation
------------------------
-I did take the time to run simple OCR on some of the located text regions, with mixed results. I used the python tesseract package (pytesser) but found the results were not generally good for vertical text, among other issues.
-The script ocr.py should run ocr on detected text regions, and output the results to the command line.
-```
-../ocr.py '週刊ヤングマガジン31号194.jpg'
-Test blob assigned to no row on pass 2
-Test blob assigned to no row on pass 3
-0,0 1294x2020 71% :ぅん'・ 結局
-玉子かけご飯が
-一 番ぉぃしぃと
-
-从
-胤
-赫
-囃
-包
-け
-H」
-の
-も
-側
-鵬
-
-はフィクショ穴ぁり、 登場する人物
-
-※この物語
-
-```
-You can see some fragmented positives, but in all the results for this page are abysmal.
-
-I also embedded those results in an HTML output, allowing "readers" to hover on Japanese Text, revealing the OCR output, which can be edited/copied/pasted. This is via the script MangaDetectText. A (more successful) example of this can be seen below:
-
-![locate text output](https://github.com/johnoneil/MangaTextDetection/blob/master/test/example.png?raw=true)
 
 Dependencies
 -----------------------
-You should be able to install most of the dependencies via pip, or you could use your operating systems package manager (e.g. Mac OS X http://brew.sh/)
-
-### Python 2.7+
+### Python 3.7
 
 https://www.python.org/
 
-Install as per OS instructions.
+Install as per OS instructions. Should work with all Python 3.
 
-### Pip
-
-http://pip.readthedocs.org/en/latest/index.html
-
-Install as per OS instructions.
-
-### Numpy
-
-http://www.numpy.org/
-
-```
-pip install numpy
-```
 
 ### Scipy
 
@@ -136,13 +88,21 @@ http://opencv.org/
 Install as per OS instructions, this should also include the python bindings.
 ```
 
-### Tesseract
+### Tesserocr
 
-https://code.google.com/p/tesseract-ocr/
+https://github.com/sirfz/tesserocr/
+
+```
+pip install tesserocr
+```
+
+### Pytesseract
+
+https://github.com/sirfz/tesserocr/
 
 Install as per OS instructions, then use pip to install the python bindings.
 Don't forget to include your target language's trained data sets.
 
 ```
-pip install python-tesseract
+pip install pytesseract
 ```
