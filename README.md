@@ -20,7 +20,7 @@ I haven't bothered to form this into a python library. It's just a series of scr
 Text Location Example
 ---------------------
 Here's an example. The input and output images are as follows (jpg).
-![Input image](https://github.com/johnoneil/MangaTextDetection/blob/master/test/locate.jpg?raw=true)
+![Input image](https://github.com/HAL-lucination/MangaTextDetection/blob/master/test/locate.png?raw=true)
 
 An initial estimate of text locations can be found by the 'LocateText.py' script:
 
