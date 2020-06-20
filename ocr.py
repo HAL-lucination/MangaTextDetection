@@ -27,7 +27,10 @@ import os
 import scipy.ndimage
 from pylab import zeros,amax,median
 
-import tesseract
+import pytesseract
+from pytesseract import Output
+from tesserocr import PyTessBaseAPI, RIL, PSM
+import tesserocr
 
 class Blurb(object):
   def __init__(self, x, y, w, h, text, confidence=100.0):
@@ -131,7 +134,7 @@ def ocr_on_bounding_boxes(img, components):
       textord_force_make_prop_words 	F 	Force proportional word segmentation on all rows. 
     '''
     #now run OCR on this bounding box
-    api = tesseract.TessBaseAPI()
+    api = PyTessBaseAPI(path='C:/Program Files/Tesseract-OCR/tessdata')
     api.Init(".","jpn",tesseract.OEM_DEFAULT)
     #handle single column lines as "vertical align" and Auto segmentation otherwise
     if len(vertical)<2:
@@ -197,12 +200,12 @@ def main():
   outfile = arg.string_value('outfile', default_value=infile + '.html')
 
   if not os.path.isfile(infile):
-    print 'Please provide a regular existing input file. Use -h option for help.'
+    print('Please provide a regular existing input file. Use -h option for help.')
     sys.exit(-1)
 
   if arg.boolean_value('verbose'):
-    print '\tProcessing file ' + infile
-    print '\tGenerating output ' + outfile
+    print('\tProcessing file ' + infile)
+    print('\tGenerating output ' + outfile)
 
   img = cv2.imread(infile)
   gray = clean.grayscale(img)
@@ -218,7 +221,7 @@ def main():
 
   blurbs = ocr_on_bounding_boxes(binary, components)
   for blurb in blurbs:
-    print str(blurb.x)+','+str(blurb.y)+' '+str(blurb.w)+'x'+str(blurb.h)+' '+ str(blurb.confidence)+'% :'+ blurb.text
+    print(str(blurb.x)+','+str(blurb.y)+' '+str(blurb.w)+'x'+str(blurb.h)+' '+ str(blurb.confidence)+'% :'+ blurb.text)
   
 
 if __name__ == '__main__':
